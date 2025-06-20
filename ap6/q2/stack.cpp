@@ -1,22 +1,22 @@
-#include "doublelist.h"
+#include "stack.h"
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
 
-doublelist::doublelist()
+stack::stack()
 {
     next = NULL;
     previous = NULL;
 }
 
-doublelist::doublelist(int value) : doublelist()
+stack::stack(int value) : stack()
 {
     insert(value);
 }
 
-bool doublelist::insert(int value)
+bool stack::insert(int value)
 {
-    doublelist *aux = new doublelist;
+    stack *aux = new stack;
 
     if(aux == NULL)
         return false;
@@ -39,33 +39,33 @@ bool doublelist::insert(int value)
     return true;
 }
 
-bool doublelist::removal(int value)
+int stack::removal()
 {
-    doublelist *aux = next;
+    stack *aux = next;  //Guarda o elemento a ser removido
 
-    while (aux != NULL && aux->value != value)
-        aux = aux->next;
+    if(aux == NULL)  //Pilha vazia
+    {
+        std::cout << "Pilha Vazia" << std::endl;
+        return 0;
+    }
 
-    if(aux == NULL)
-        return false;
+    next = next->next;
 
-    if(aux == next)
-        next = next->next;
-    if(aux->next != NULL)
-        aux->next->previous = aux->previous;
-    if(aux->previous != NULL)
-        aux->previous->next = aux->next;
+    if(aux->next != NULL)  //Se o elemento removido não for o último
+        aux->next->previous = NULL;
 
-    free(aux);
-    return true;
+    int value = aux->value; //Guarda o valor do elemento removido
+    free(aux);  //Libera a memória do elemento removido
+
+    return value;
 }
 
-void doublelist::printlist()
+void stack::printlist()
 {
     if(next == NULL)
         std::cout << "Lista vazia" << std::endl;
 
-    doublelist *aux = next;
+    stack *aux = next;
 
     while (aux != NULL) {
         std::cout << aux->value << " ";

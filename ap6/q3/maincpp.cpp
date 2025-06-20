@@ -1,4 +1,4 @@
-#include "doublelist.h"
+#include "queue.h"
 #include <iostream>
 
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     int r = 4, value;
-    doublelist list;
+    queue list;
 
     do {
         cout << "[1] Inserir um valor" << endl;

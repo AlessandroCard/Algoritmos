@@ -1,4 +1,4 @@
-#include "doublelist.h"
+#include "stack.h"
 #include <iostream>
 
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     int r = 4, value;
-    doublelist list;
+    stack list;
 
     do {
         cout << "[1] Inserir um valor" << endl;
